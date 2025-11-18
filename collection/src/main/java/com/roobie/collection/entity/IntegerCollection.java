@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 
 public class IntegerCollection {
-  private final static Logger logger = LogManager.getLogger();
+  private static final Logger logger = LogManager.getLogger();
 
   private final long collectionId = IdGeneration.next();
   private int[] collection;

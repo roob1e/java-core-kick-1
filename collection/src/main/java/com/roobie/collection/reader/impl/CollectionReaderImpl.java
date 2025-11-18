@@ -2,7 +2,6 @@ package com.roobie.collection.reader.impl;
 
 import com.roobie.collection.entity.IntegerCollection;
 import com.roobie.collection.exception.ReaderException;
-import com.roobie.collection.factory.IntegerCollectionFactory;
 import com.roobie.collection.reader.CollectionReader;
 import com.roobie.collection.validation.StringValidator;
 import org.apache.logging.log4j.Logger;
