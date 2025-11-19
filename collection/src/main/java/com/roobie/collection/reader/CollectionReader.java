@@ -1,6 +1,6 @@
 package com.roobie.collection.reader;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.exception.IntegerCollectionException;
 
 import java.nio.file.Path;

@@ -1,6 +1,7 @@
 package com.roobie.collection.repository.impl;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.comparator.impl.CollectionComparator;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.repository.CollectionRepository;
 import com.roobie.collection.specification.Specification;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class CollectionRepositoryImpl implements CollectionRepository {
   private static final Logger logger = LogManager.getLogger();
   private static CollectionRepositoryImpl instance;
-  private final List<IntegerCollection> storage;
+  private List<IntegerCollection> storage;
 
   public static CollectionRepositoryImpl getInstance() {
     if (instance == null) {
@@ -39,6 +40,9 @@ public class CollectionRepositoryImpl implements CollectionRepository {
     for (IntegerCollection collection : storage) {
       if (specification.specify(collection)) {
         response.add(collection);
+        if(specification instanceof IdSpecification) {
+          break;
+        }
       }
     }
     if (!response.isEmpty()) {
@@ -51,14 +55,16 @@ public class CollectionRepositoryImpl implements CollectionRepository {
   }
 
   @Override
-  public IntegerCollection add(IntegerCollection collection) throws IntegerCollectionException {
-    logger.info("Adding collection: {}", collection.toString());
-    storage.add(collection);
-    return collection;
+  public List<IntegerCollection> add(IntegerCollection... collections) {
+    for (IntegerCollection collection : collections) {
+      storage.add(collection);
+      logger.info("Adding collection: {}", collection.toString());
+    }
+    return storage;
   }
 
   @Override
-  public boolean remove(long id) throws IntegerCollectionException {
+  public boolean remove(long id) {
     logger.info("Removing collection: {}", id);
     IdSpecification specification = new IdSpecification(id);
     for (IntegerCollection collection : storage) {
@@ -76,5 +82,31 @@ public class CollectionRepositoryImpl implements CollectionRepository {
   public List<IntegerCollection> fetchAll() {
     logger.info("Fetching all collections");
     return storage;
+  }
+
+  public void resetStorage() {
+    storage = new ArrayList<>();
+  }
+
+  @Override
+  public List<IntegerCollection> sort() {
+    logger.info("Sorting collections");
+    List<IntegerCollection> response = storage;
+    CollectionComparator comparator = new CollectionComparator();
+    boolean swapped = true;
+
+    while (swapped) {
+      swapped = false;
+      for (int i = 0; i < response.size() - 1; i++) {
+        IntegerCollection comparing = response.get(i);
+        IntegerCollection compared = response.get(i + 1);
+        if (comparator.compare(comparing, compared) > 0) {
+          swapped = true;
+          response.set(i + 1, comparing);
+          response.set(i, compared);
+        }
+      }
+    }
+    return response;
   }
 }

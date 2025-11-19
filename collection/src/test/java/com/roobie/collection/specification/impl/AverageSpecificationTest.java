@@ -1,6 +1,6 @@
 package com.roobie.collection.specification.impl;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.util.Sign;
 import org.junit.jupiter.api.AfterEach;
@@ -26,7 +26,7 @@ public class AverageSpecificationTest {
   void specify1() throws IntegerCollectionException {
     boolean expected = true;
 
-    IntegerCollection collection = new IntegerCollection(new int[]{1, 2, 3});
+    IntegerCollection collection = new IntegerCollection(new Integer[]{1, 2, 3});
     boolean actual = specification.specify(collection);
 
     assertEquals(expected, actual);
@@ -36,7 +36,7 @@ public class AverageSpecificationTest {
   void specify2() throws IntegerCollectionException {
     boolean expected = false;
 
-    IntegerCollection collection = new IntegerCollection(new int[]{4, 5, 6});
+    IntegerCollection collection = new IntegerCollection(new Integer[]{4, 5, 6});
     boolean actual = specification.specify(collection);
 
     assertEquals(expected, actual);

@@ -1,6 +1,6 @@
 package com.roobie.collection.reader.impl;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.reader.CollectionReader;
 import com.roobie.collection.validation.StringValidator;
@@ -25,7 +25,7 @@ public class CollectionReaderImpl implements CollectionReader {
       for (String line : lines) {
         if (StringValidator.isValid(line)) {
           String[] parts = line.split(delimiters);
-          int[] arr = new int[parts.length];
+          Integer[] arr = new Integer[parts.length];
           for (int i = 0; i < parts.length; i++) {
             String temp = parts[i].trim();
             arr[i] = Integer.parseInt(temp);

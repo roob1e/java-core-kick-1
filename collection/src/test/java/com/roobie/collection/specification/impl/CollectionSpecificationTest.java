@@ -1,6 +1,6 @@
 package com.roobie.collection.specification.impl;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ class CollectionSpecificationTest {
 
   @BeforeEach
   void setUp() {
-    specification = new CollectionSpecification(new int[]{1, 2, 3});
+    specification = new CollectionSpecification(new Integer[]{1, 2, 3});
   }
 
   @AfterEach
@@ -24,7 +24,7 @@ class CollectionSpecificationTest {
   void specify1() {
     boolean expected = true;
 
-    IntegerCollection collection = new IntegerCollection(new int[]{1, 2, 3});
+    IntegerCollection collection = new IntegerCollection(new Integer[]{1, 2, 3});
     boolean actual = specification.specify(collection);
 
     assertEquals(expected, actual);
@@ -34,7 +34,7 @@ class CollectionSpecificationTest {
   void specify2() {
     boolean expected = false;
 
-    IntegerCollection collection = new IntegerCollection(new int[0]);
+    IntegerCollection collection = new IntegerCollection(new Integer[0]);
     boolean actual = specification.specify(collection);
 
     assertEquals(expected, actual);

@@ -1,6 +1,6 @@
 package com.roobie.collection.specification.impl;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.roobie.collection.service.impl;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class BasicCollectionServiceImplTest {
 
   @BeforeEach
   void setUp() {
-    collection = new IntegerCollection(new int[]{1, 2, 3});
+    collection = new IntegerCollection(new Integer[]{1, 2, 3});
   }
 
   @AfterEach

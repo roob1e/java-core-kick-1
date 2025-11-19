@@ -1,13 +1,13 @@
 package com.roobie.collection.observer;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.util.Events;
 
 public interface Observable {
-  void addObserver(Observer observer);
+  void addObservers(Observer... observers);
 
-  void removeObserver(Observer observer);
+  void removeObservers(Observer... observers);
 
   void notifyObservers(Events action, IntegerCollection collection) throws IntegerCollectionException;
 }

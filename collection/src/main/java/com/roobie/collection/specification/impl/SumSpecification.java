@@ -1,6 +1,6 @@
 package com.roobie.collection.specification.impl;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.service.impl.BasicCollectionServiceImpl;
 import com.roobie.collection.specification.Specification;

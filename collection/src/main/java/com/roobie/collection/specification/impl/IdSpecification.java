@@ -1,6 +1,6 @@
 package com.roobie.collection.specification.impl;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.specification.Specification;
 
 public record IdSpecification(long id) implements Specification {

@@ -1,6 +1,6 @@
 package com.roobie.collection.service.impl;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.service.IntegerCollectionService;
 
@@ -9,12 +9,12 @@ import java.util.HashMap;
 
 public class BasicCollectionServiceImpl implements IntegerCollectionService {
   @Override
-  public int findMinElement(IntegerCollection collection) throws IntegerCollectionException {
-    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new int[0])) {
+  public Integer findMinElement(IntegerCollection collection) throws IntegerCollectionException {
+    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new Integer[0])) {
       throw new IntegerCollectionException("Collection is null");
     }
-    int[] processed = collection.getCollection();
-    int min = processed[0];
+    Integer[] processed = collection.getCollection();
+    Integer min = processed[0];
     for (int i = 1; i < processed.length; i++) {
       if (processed[i] < min) {
         min = processed[i];
@@ -24,8 +24,8 @@ public class BasicCollectionServiceImpl implements IntegerCollectionService {
   }
 
   @Override
-  public int findMaxElement(IntegerCollection collection) throws IntegerCollectionException {
-    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new int[0])) {
+  public Integer findMaxElement(IntegerCollection collection) throws IntegerCollectionException {
+    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new Integer[0])) {
       throw new IntegerCollectionException("Collection is null");
     }
 
@@ -39,13 +39,13 @@ public class BasicCollectionServiceImpl implements IntegerCollectionService {
   }
 
   @Override
-  public int replaceElement(IntegerCollection collection, int newElement, int index) throws IntegerCollectionException {
+  public Integer replaceElement(IntegerCollection collection, Integer newElement, int index) throws IntegerCollectionException {
     if (index < 0 || index >= collection.getCollection().length) {
       throw new IntegerCollectionException("Index out of range");
     }
 
-    int[] processed = collection.getCollection();
-    int[] result = new int[processed.length];
+    Integer[] processed = collection.getCollection();
+    Integer[] result = new Integer[processed.length];
     for (int i = 0; i < processed.length; i++) {
       result[i] = processed[i];
       if (i == index) {
@@ -58,11 +58,11 @@ public class BasicCollectionServiceImpl implements IntegerCollectionService {
 
   @Override
   public double defineAverageValue(IntegerCollection collection) throws IntegerCollectionException {
-    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new int[0])) {
+    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new Integer[0])) {
       throw new IntegerCollectionException("Collection is null");
     }
 
-    int[] processed = collection.getCollection();
+    Integer[] processed = collection.getCollection();
     double average;
     double sum = 0;
     for (int element : processed) {
@@ -74,11 +74,11 @@ public class BasicCollectionServiceImpl implements IntegerCollectionService {
 
   @Override
   public int defineSum(IntegerCollection collection) throws IntegerCollectionException {
-    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new int[0])) {
+    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new Integer[0])) {
       throw new IntegerCollectionException("Collection is null");
     }
 
-    int[] processed = collection.getCollection();
+    Integer[] processed = collection.getCollection();
     int sum = 0;
     for (int element : processed) {
       sum += element;
@@ -89,11 +89,11 @@ public class BasicCollectionServiceImpl implements IntegerCollectionService {
   @Override
   public HashMap<String, Integer> countPositivesAndNegatives(IntegerCollection collection)
           throws IntegerCollectionException {
-    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new int[0])) {
+    if (collection.getCollection() == null || Arrays.equals(collection.getCollection(), new Integer[0])) {
       throw new IntegerCollectionException("Collection is null");
     }
 
-    int[] processed = collection.getCollection();
+    Integer[] processed = collection.getCollection();
     HashMap<String, Integer> map = new HashMap<>();
     map.put("positive", 0);
     map.put("negative", 0);

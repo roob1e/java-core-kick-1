@@ -1,6 +1,6 @@
 package com.roobie.collection.reader;
 
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.reader.impl.CollectionReaderImpl;
 import org.junit.jupiter.api.Test;
@@ -17,13 +17,13 @@ class CollectionReaderTest {
 
   @Test
   void parseAllLines() throws IntegerCollectionException {
-    List<int[]> expected = new ArrayList<>();
-    expected.add(new IntegerCollection(new int[]{1, 2, 3, 4}).getCollection());
-    expected.add(new IntegerCollection(new int[]{4, 3, 2, 1}).getCollection());
-    expected.add(new IntegerCollection(new int[]{8, 1, 4, 6, 8}).getCollection());
+    List<Integer[]> expected = new ArrayList<>();
+    expected.add(new IntegerCollection(new Integer[]{1, 2, 3, 4}).getCollection());
+    expected.add(new IntegerCollection(new Integer[]{4, 3, 2, 1}).getCollection());
+    expected.add(new IntegerCollection(new Integer[]{8, 1, 4, 6, 8}).getCollection());
 
     List<IntegerCollection> parsed = new CollectionReaderImpl().parseAllLines(path);
-    List<int[]> actual = new ArrayList<>();
+    List<Integer[]> actual = new ArrayList<>();
     for (IntegerCollection collection : parsed) {
       actual.add(collection.getCollection());
     }
@@ -33,10 +33,10 @@ class CollectionReaderTest {
 
   @Test
   void parseLine() throws IntegerCollectionException {
-    int[] expected = new int[]{1, 2, 3, 4};
+    Integer[] expected = new Integer[]{1, 2, 3, 4};
 
     IntegerCollection parsed = new CollectionReaderImpl().parseLine(path, 0);
-    int[] actual = parsed.getCollection();
+    Integer[] actual = parsed.getCollection();
 
     assertArrayEquals(expected, actual);
   }

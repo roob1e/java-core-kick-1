@@ -1,7 +1,7 @@
 package com.roobie.collection.warehouse.impl;
 
 import com.roobie.collection.entity.CollectionStats;
-import com.roobie.collection.entity.IntegerCollection;
+import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.service.impl.BasicCollectionServiceImpl;
 import com.roobie.collection.warehouse.Warehouse;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class WarehouseImpl implements Warehouse {
   private static final Logger logger = LogManager.getLogger();
   private static WarehouseImpl instance;
-  private final HashMap<Long, CollectionStats> storage;
+  private HashMap<Long, CollectionStats> storage;
 
   private WarehouseImpl() {
     storage = new HashMap<>();
@@ -25,6 +25,11 @@ public class WarehouseImpl implements Warehouse {
       instance = new WarehouseImpl();
     }
     return instance;
+  }
+
+  @Override
+  public void resetStorage() {
+    storage.clear();
   }
 
   @Override

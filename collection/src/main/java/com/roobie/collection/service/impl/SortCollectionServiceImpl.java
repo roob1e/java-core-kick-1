@@ -5,7 +5,7 @@ import com.roobie.collection.service.SortCollectionService;
 
 public class SortCollectionServiceImpl implements SortCollectionService {
   @Override
-  public int[] bubbleSort(int[] array) throws IntegerCollectionException {
+  public Integer[] bubbleSort(Integer[] array) throws IntegerCollectionException {
     if (array == null || array.length < 2) {
       throw new IntegerCollectionException("Collection is smaller than 2");
     }
@@ -29,7 +29,7 @@ public class SortCollectionServiceImpl implements SortCollectionService {
   }
 
   @Override
-  public int[] insertionSort(int[] array) throws IntegerCollectionException {
+  public Integer[] insertionSort(Integer[] array) throws IntegerCollectionException {
     if (array == null || array.length < 2) {
       throw new IntegerCollectionException("Collection is smaller than 2");
     }
@@ -47,7 +47,7 @@ public class SortCollectionServiceImpl implements SortCollectionService {
   }
 
   @Override
-  public int[] selectionSort(int[] array) throws IntegerCollectionException {
+  public Integer[] selectionSort(Integer[] array) throws IntegerCollectionException {
     if (array == null || array.length < 2) {
       throw new IntegerCollectionException("Collection is smaller than 2");
     }

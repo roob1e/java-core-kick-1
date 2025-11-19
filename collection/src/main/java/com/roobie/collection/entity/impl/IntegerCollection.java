@@ -1,6 +1,6 @@
-package com.roobie.collection.entity;
+package com.roobie.collection.entity.impl;
 
-import com.roobie.collection.exception.IntegerCollectionException;
+import com.roobie.collection.entity.Collection;
 import com.roobie.collection.observer.Observable;
 import com.roobie.collection.observer.Observer;
 import com.roobie.collection.util.Events;
@@ -10,35 +10,39 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class IntegerCollection implements Observable {
+public class IntegerCollection extends Collection<Integer> implements Observable {
   private static final Logger logger = LogManager.getLogger();
 
   private final long collectionId = IdGeneration.next();
   private List<Observer> observers = new ArrayList<>();
-  private int[] collection;
+  private Integer[] collection;
 
-  public IntegerCollection(int[] collection) {
+  public IntegerCollection(Integer[] collection) {
+    super(collection);
     this.collection = Arrays.copyOf(collection, collection.length);
-    notifyObservers(Events.CREATE, this);
     logger.info("IntegerCollection was initialized with {} elements", collection.length);
   }
 
   public IntegerCollection() {
+    super();
     logger.info("Empty IntegerCollection was initialized");
   }
 
   private IntegerCollection(Builder builder) {
     this.collection = Arrays.copyOf(builder.collection, builder.collection.length);
-    this.observers = List.copyOf(builder.observers);
+    this.observers = new ArrayList<>(builder.observers);
+    notifyObservers(Events.CREATE, this);
   }
-
-  public int[] getCollection() {
+  @Override
+  public Integer[] getCollection() {
     return Arrays.copyOf(this.collection, collection.length);
   }
 
-  public void setCollection(int[] collection) throws IntegerCollectionException {
+  @Override
+  public void setCollection(Integer[] collection) {
     this.collection = Arrays.copyOf(collection, collection.length);
     notifyObservers(Events.UPDATE, this);
   }
@@ -47,14 +51,20 @@ public class IntegerCollection implements Observable {
     return collectionId;
   }
 
-  @Override
-  public void addObserver(Observer observer) {
-    observers.add(observer);
+  public List<Observer> getObservers() {
+    return observers;
   }
 
   @Override
-  public void removeObserver(Observer observer) {
-    observers.remove(observer);
+  public void addObservers(Observer... observers) {
+    Collections.addAll(this.observers, observers);
+  }
+
+  @Override
+  public void removeObservers(Observer... observers) {
+    for (Observer observer : observers) {
+      this.observers.remove(observer);
+    }
   }
 
   @Override
@@ -70,7 +80,7 @@ public class IntegerCollection implements Observable {
 
   @Override
   public String toString() {
-    @SuppressWarnings("StringBufferReplaceableByString") StringBuilder builder = new StringBuilder();
+    StringBuilder builder = new StringBuilder();
     builder.append("IntegerCollection [collectionId=");
     builder.append(collectionId);
     builder.append(", collection=");
@@ -84,7 +94,7 @@ public class IntegerCollection implements Observable {
     if (o == null || getClass() != o.getClass()) return false;
 
     IntegerCollection that = (IntegerCollection) o;
-    return getCollectionId() == that.getCollectionId() && Arrays.equals(getCollection(), that.getCollection());
+    return Arrays.equals(getCollection(), that.getCollection());
   }
 
   @Override
@@ -95,18 +105,18 @@ public class IntegerCollection implements Observable {
   }
 
   public static class Builder {
-    private int[] collection;
+    private Integer[] collection;
     private final List<Observer> observers = new ArrayList<>();
 
-    public Builder collection(int[] collection) {
+    public Builder collection(Integer[] collection) {
       this.collection = Arrays.copyOf(collection, collection.length);
       logger.info("Collections set to: {}", Arrays.toString(collection));
       return this;
     }
 
-    public Builder observer(Observer... observer) {
-      this.observers.addAll(Arrays.asList(observer));
-      logger.info("Observers set to: {}", Arrays.toString(observer));
+    public Builder observers(Observer... observers) {
+      Collections.addAll(this.observers, observers);
+      logger.info("Observers set to: {}", Arrays.toString(observers));
       return this;
     }
 

@@ -1,7 +1,7 @@
 package com.roobie.collection.exception;
 
-import com.roobie.collection.entity.IntegerCollection;
-import com.roobie.collection.factory.IntegerCollectionFactory;
+import com.roobie.collection.entity.impl.IntegerCollection;
+import com.roobie.collection.factory.impl.IntegerCollectionFactory;
 import com.roobie.collection.service.impl.BasicCollectionServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +15,7 @@ class IntegerCollectionExceptionTest {
 
   @BeforeEach
   void setUp() throws IntegerCollectionException {
-    collection = IntegerCollectionFactory.createEmpty();
+    collection = new IntegerCollectionFactory().createEmpty();
   }
 
   @AfterEach
