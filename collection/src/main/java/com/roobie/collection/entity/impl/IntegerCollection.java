@@ -3,7 +3,6 @@ package com.roobie.collection.entity.impl;
 import com.roobie.collection.entity.Collection;
 import com.roobie.collection.observer.Observable;
 import com.roobie.collection.observer.Observer;
-import com.roobie.collection.observer.impl.ObserverImpl;
 import com.roobie.collection.util.Events;
 import com.roobie.collection.util.IdGeneration;
 import org.apache.logging.log4j.LogManager;

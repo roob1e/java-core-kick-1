@@ -33,7 +33,7 @@ class IntegerCollectionObserverTest {
   void addObserver() {
     int expected = 1;
 
-    IntegerCollection collection = new IntegerCollection().builder()
+    @SuppressWarnings("unused") IntegerCollection collection = new IntegerCollection().builder()
             .collection(new Integer[]{1, 2, 3, 4})
             .observers(observer)
             .build();

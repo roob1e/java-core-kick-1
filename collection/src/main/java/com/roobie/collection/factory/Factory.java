@@ -1,6 +1,5 @@
 package com.roobie.collection.factory;
 
-import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.observer.Observer;
 
 public interface Factory<T> {

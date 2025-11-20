@@ -55,7 +55,7 @@ public abstract class Collection<T> {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
+    @SuppressWarnings("StringBufferReplaceableByString") StringBuilder sb = new StringBuilder();
     sb.append("Collection{collection=");
     sb.append(Arrays.toString(collection));
     sb.append('}');

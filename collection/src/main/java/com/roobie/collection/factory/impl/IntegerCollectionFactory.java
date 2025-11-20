@@ -1,7 +1,6 @@
 package com.roobie.collection.factory.impl;
 
 import com.roobie.collection.entity.impl.IntegerCollection;
-import com.roobie.collection.exception.IntegerCollectionException;
 import com.roobie.collection.factory.Factory;
 import com.roobie.collection.observer.Observer;
 
