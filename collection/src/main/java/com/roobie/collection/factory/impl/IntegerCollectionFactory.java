@@ -7,7 +7,7 @@ import com.roobie.collection.factory.Factory;
 import java.util.Arrays;
 import java.util.Random;
 
-public class IntegerCollectionFactory extends Factory<IntegerCollection> {
+public class IntegerCollectionFactory implements Factory<IntegerCollection> {
   private static final Random RANDOM = new Random();
 
   public IntegerCollectionFactory() {

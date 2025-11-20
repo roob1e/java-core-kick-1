@@ -4,12 +4,13 @@ import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.observer.Observer;
 import com.roobie.collection.util.Events;
 import com.roobie.collection.warehouse.Warehouse;
+import com.roobie.collection.warehouse.impl.WarehouseImpl;
 
 public class ObserverImpl implements Observer {
   private final Warehouse warehouse;
 
-  public ObserverImpl(Warehouse warehouse) {
-    this.warehouse = warehouse;
+  public ObserverImpl() {
+    this.warehouse = WarehouseImpl.getInstance();
   }
 
   @Override

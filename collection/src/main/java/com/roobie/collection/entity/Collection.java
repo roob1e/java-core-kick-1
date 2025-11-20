@@ -16,8 +16,10 @@ public abstract class Collection<T> {
   }
 
   public abstract T[] getCollection();
+
   public T get(int index) {
     return collection[index];
   }
+
   public abstract void setCollection(T[] collection);
 }

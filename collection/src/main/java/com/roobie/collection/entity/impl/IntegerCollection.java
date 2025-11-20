@@ -36,6 +36,7 @@ public class IntegerCollection extends Collection<Integer> implements Observable
     this.observers = new ArrayList<>(builder.observers);
     notifyObservers(Events.CREATE, this);
   }
+
   @Override
   public Integer[] getCollection() {
     return Arrays.copyOf(this.collection, collection.length);
