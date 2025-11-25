@@ -32,13 +32,11 @@ public class WarehouseImpl implements Warehouse {
     storage.clear();
   }
 
-  @Override
   public HashMap<Long, CollectionStats> getStorage() {
     logger.info("Getting storage of Warehouse");
     return storage;
   }
 
-  @Override
   public CollectionStats getStats(long collectionId) {
     if (storage.containsKey(collectionId)) {
       logger.info("Got stats of Warehouse with id {}: {}", collectionId ,storage.get(collectionId));

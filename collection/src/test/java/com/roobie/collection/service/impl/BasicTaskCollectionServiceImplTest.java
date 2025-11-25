@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BasicCollectionServiceImplTest {
+class BasicTaskCollectionServiceImplTest {
   IntegerCollection collection;
   BasicServiceImpl impl = new BasicServiceImpl();
 

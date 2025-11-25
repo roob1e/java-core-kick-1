@@ -14,11 +14,11 @@ class ReaderExceptionTest {
 
   @Test
   void parseAllLinesException() {
-    assertThrows(IntegerCollectionException.class, () -> reader.parseAllLines(invalid_path));
+    assertThrows(IntegerCollectionException.class, () -> reader.readAllLines(invalid_path));
   }
 
   @Test
   void parseLineException() {
-    assertThrows(IntegerCollectionException.class, () -> reader.parseLine(invalid_path, 1));
+    assertThrows(IntegerCollectionException.class, () -> reader.readLine(invalid_path, 1));
   }
 }

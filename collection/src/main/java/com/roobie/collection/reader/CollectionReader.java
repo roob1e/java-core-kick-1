@@ -4,6 +4,6 @@ import java.nio.file.Path;
 import java.util.List;
 
 public interface CollectionReader<T> {
-  List<T> parseAllLines(Path filePath) throws Throwable;
-  T parseLine(Path filePath, int index) throws Throwable;
+  List<T> readAllLines(Path filePath) throws Exception;
+  T readLine(Path filePath, int index) throws Exception;
 }

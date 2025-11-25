@@ -1,5 +1,5 @@
 package com.roobie.collection.comparator;
 
-public interface Comparator<T> {
+public interface TaskComparator<T> {
   int compare(T comparing, T compared);
 }

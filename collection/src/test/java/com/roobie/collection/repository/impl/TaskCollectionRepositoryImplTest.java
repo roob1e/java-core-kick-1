@@ -14,7 +14,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class CollectionRepositoryImplTest {
+class TaskCollectionRepositoryImplTest {
   static CollectionRepositoryImpl repository = CollectionRepositoryImpl.getInstance();
   IdSpecification idSpecification;
   CollectionSpecification collectionSpecification;

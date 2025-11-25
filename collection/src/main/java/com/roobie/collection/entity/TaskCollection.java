@@ -4,14 +4,14 @@ import com.roobie.collection.exception.IntegerCollectionException;
 
 import java.util.Arrays;
 
-public class Collection<T> {
+public class TaskCollection<T> {
   protected T[] collection;
 
-  public Collection(T[] collection) {
+  public TaskCollection(T[] collection) {
     this.collection = Arrays.copyOf(collection, collection.length);
   }
 
-  public Collection() {
+  public TaskCollection() {
     this.collection = null;
   }
 
@@ -46,7 +46,7 @@ public class Collection<T> {
       return false;
     }
 
-    Collection<?> that = (Collection<?>) o;
+    TaskCollection<?> that = (TaskCollection<?>) o;
     return Arrays.equals(getCollection(), that.getCollection());
   }
 

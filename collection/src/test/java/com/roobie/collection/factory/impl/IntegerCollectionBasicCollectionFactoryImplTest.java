@@ -1,7 +1,9 @@
 package com.roobie.collection.factory.impl;
 
 import com.roobie.collection.entity.impl.IntegerCollection;
-import com.roobie.collection.factory.Factory;
+import com.roobie.collection.factory.BasicCollectionFactory;
+import com.roobie.collection.factory.ObservableCollectionFactory;
+import com.roobie.collection.factory.RandomCollectionFactory;
 import com.roobie.collection.observer.Observer;
 import com.roobie.collection.observer.impl.ObserverImpl;
 import com.roobie.collection.warehouse.impl.WarehouseImpl;
@@ -12,19 +14,23 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class IntegerCollectionFactoryTest {
-  static Factory<IntegerCollection, Integer> factory;
+class IntegerCollectionBasicCollectionFactoryImplTest {
+  static BasicCollectionFactory<IntegerCollection, Integer> basicCollectionFactory;
+  static RandomCollectionFactory<IntegerCollection> randomCollectionFactory;
+  static ObservableCollectionFactory<IntegerCollection, Integer> observableCollectionFactory;
 
   @BeforeAll
   static void setUp() {
-    factory = new IntegerCollectionFactory();
+    basicCollectionFactory = new BasicCollectionFactoryImpl();
+    randomCollectionFactory = new RandomCollectionFactoryImpl();
+    observableCollectionFactory = new ObservableCollectionFactoryImpl();
   }
 
   @Test
   void createEmpty() {
     Integer[] expected = null;
 
-    IntegerCollection empty = factory.createEmpty();
+    IntegerCollection empty = basicCollectionFactory.createEmpty();
     Integer[] actual = empty.getCollection();
 
     assertArrayEquals(expected, actual);
@@ -34,7 +40,7 @@ class IntegerCollectionFactoryTest {
   void createFromArray() {
     Integer[] expected = new Integer[] {1, 2, 3, 4, 5};
 
-    IntegerCollection collection = factory.createFromArray(expected);
+    IntegerCollection collection = basicCollectionFactory.createFromArray(expected);
     Integer[] actual = collection.getCollection();
 
     assertArrayEquals(expected, actual);
@@ -45,7 +51,7 @@ class IntegerCollectionFactoryTest {
     boolean expected = true;
     Class<IntegerCollection> clazz = IntegerCollection.class;
 
-    IntegerCollection collection = factory.createRandom(5);
+    IntegerCollection collection = randomCollectionFactory.createRandom(5);
     boolean actual = collection.getClass() == clazz;
     assertEquals(expected, actual);
   }
@@ -58,7 +64,7 @@ class IntegerCollectionFactoryTest {
 
     Integer[] array = new Integer[] {1, 2, 3, 4, 5};
     Observer[] observers = new ObserverImpl[]{new ObserverImpl(WarehouseImpl.getInstance())};
-    IntegerCollection full = factory.createFull(array, observers);
+    IntegerCollection full = observableCollectionFactory.createWithObservers(array, observers);
     Integer[] actual_array = full.getCollection();
     int actual_obs_size = full.getObservers().size();
     boolean actual = (expected_obs_size == actual_obs_size) && Arrays.equals(expected_array, actual_array);
@@ -74,7 +80,7 @@ class IntegerCollectionFactoryTest {
     boolean expected = true;
 
     Observer[] observers = new ObserverImpl[]{new ObserverImpl(WarehouseImpl.getInstance())};
-    IntegerCollection fullRandom = factory.createFullRandom(5, observers);
+    IntegerCollection fullRandom = observableCollectionFactory.createRandomWithObservers(5, observers);
     boolean size = expected_size == fullRandom.getCollection().length;
     boolean obs = expected_obs_size == fullRandom.getObservers().size();
     boolean clazz = expected_class == fullRandom.getClass();

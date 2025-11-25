@@ -1,6 +1,5 @@
 package com.roobie.collection.repository.impl;
 
-import com.roobie.collection.comparator.impl.CollectionComparator;
 import com.roobie.collection.entity.impl.IntegerCollection;
 import com.roobie.collection.repository.CollectionRepository;
 import com.roobie.collection.specification.Specification;
@@ -85,27 +84,5 @@ public class CollectionRepositoryImpl implements CollectionRepository<IntegerCol
 
   public void resetStorage() {
     storage = new ArrayList<>();
-  }
-
-  @Override
-  public List<IntegerCollection> sort() {
-    logger.info("Sorting collections");
-    List<IntegerCollection> response = storage;
-    CollectionComparator comparator = new CollectionComparator();
-    boolean swapped = true;
-
-    while (swapped) {
-      swapped = false;
-      for (int i = 0; i < response.size() - 1; i++) {
-        IntegerCollection comparing = response.get(i);
-        IntegerCollection compared = response.get(i + 1);
-        if (comparator.compare(comparing, compared) > 0) {
-          swapped = true;
-          response.set(i + 1, comparing);
-          response.set(i, compared);
-        }
-      }
-    }
-    return response;
   }
 }

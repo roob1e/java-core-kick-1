@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CollectionReaderTest {
+class TaskCollectionReaderTest {
   Path path;
   CollectionReaderImpl reader;
 
@@ -36,7 +36,7 @@ class CollectionReaderTest {
     expected.add(new IntegerCollection(new Integer[]{4, 3, 2, 1}).getCollection());
     expected.add(new IntegerCollection(new Integer[]{8, 1, 4, 6, 8}).getCollection());
 
-    List<IntegerCollection> parsed = reader.parseAllLines(path);
+    List<IntegerCollection> parsed = reader.readAllLines(path);
     List<Integer[]> actual = new ArrayList<>();
     for (IntegerCollection collection : parsed) {
       actual.add(collection.getCollection());
@@ -49,7 +49,7 @@ class CollectionReaderTest {
   void parseLine() throws IntegerCollectionException {
     Integer[] expected = new Integer[]{1, 2, 3, 4};
 
-    IntegerCollection parsed = reader.parseLine(path, 0);
+    IntegerCollection parsed = reader.readLine(path, 0);
     Integer[] actual = parsed.getCollection();
 
     assertArrayEquals(expected, actual);

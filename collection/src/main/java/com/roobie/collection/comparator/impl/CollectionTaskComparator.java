@@ -1,9 +1,9 @@
 package com.roobie.collection.comparator.impl;
 
-import com.roobie.collection.comparator.Comparator;
+import com.roobie.collection.comparator.TaskComparator;
 import com.roobie.collection.entity.impl.IntegerCollection;
 
-public class CollectionComparator implements Comparator<IntegerCollection> {
+public class CollectionTaskComparator implements TaskComparator<IntegerCollection> {
   @Override
   public int compare(IntegerCollection comparing, IntegerCollection compared) {
     if (comparing == null && compared == null) {

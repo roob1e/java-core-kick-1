@@ -15,12 +15,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.roobie.collection.reader.impl.CollectionReaderImpl.delimiters;
-
 public class StreamCollectionReaderImpl implements CollectionReader<IntegerCollection> {
+  private static final String delimiters = "[, \\-\\s]+";
   Logger logger = LogManager.getLogger();
 
-  public List<IntegerCollection> parseAllLines(Path filePath) throws IntegerCollectionException {
+  @Override
+  public List<IntegerCollection> readAllLines(Path filePath) throws IntegerCollectionException {
     Validator<String> validator = new StringValidator();
     if (!Files.exists(filePath)) {
       logger.warn("File does not exist: {}", filePath);
@@ -39,7 +39,7 @@ public class StreamCollectionReaderImpl implements CollectionReader<IntegerColle
   }
 
   @Override
-  public IntegerCollection parseLine(Path filePath, int line) throws IntegerCollectionException {
+  public IntegerCollection readLine(Path filePath, int line) throws IntegerCollectionException {
     Validator<String> validator = new StringValidator();
     if (!Files.exists(filePath)) {
       logger.warn("File does not exist: {}", filePath);

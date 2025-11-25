@@ -1,6 +1,6 @@
 package com.roobie.collection.entity.impl;
 
-import com.roobie.collection.entity.Collection;
+import com.roobie.collection.entity.TaskCollection;
 import com.roobie.collection.observer.Observable;
 import com.roobie.collection.observer.Observer;
 import com.roobie.collection.util.Events;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class IntegerCollection extends Collection<Integer> implements Observable<IntegerCollection> {
+public class IntegerCollection extends TaskCollection<Integer> implements Observable<IntegerCollection> {
   private static final Logger logger = LogManager.getLogger();
 
   private final long collectionId;
@@ -63,7 +63,7 @@ public class IntegerCollection extends Collection<Integer> implements Observable
   }
 
   @Override
-  public final void removeObservers(Observer... observers) {
+  public void removeObservers(Observer... observers) {
     for (Observer observer : observers) {
       this.observers.remove(observer);
     }
@@ -98,9 +98,6 @@ public class IntegerCollection extends Collection<Integer> implements Observable
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    if (!super.equals(o)) {
       return false;
     }
     IntegerCollection that = (IntegerCollection) o;
